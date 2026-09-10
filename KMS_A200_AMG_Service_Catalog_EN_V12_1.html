@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>KMS Rental | A200 AMG Service Catalogue — V12.1</title>
+<style>
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#050607}
+iframe{display:block;width:100%;height:100%;border:0}
+</style>
+</head>
+<body>
+<iframe id="catalog" title="KMS Rental A200 AMG Service Catalogue V12.1" src="./KMS_A200_AMG_Service_Catalog_EN_V11_1_CLEAN.html?v=12.1"></iframe>
+<script>
+(function(){
+  const frame=document.getElementById('catalog');
+  const css=`
+/* KMS V12.1 FINAL — responsive visual refinement */
+.hero-grid{grid-template-columns:1fr!important;gap:28px!important;align-items:stretch!important}
+.hero-copy{width:100%!important;max-width:980px!important;margin:0 auto!important}
+.hero-image{width:100%!important;min-height:0!important;height:auto!important;border-radius:26px!important;overflow:hidden!important}
+.hero-art{width:100%!important;height:auto!important;min-height:0!important;aspect-ratio:16/9!important;overflow:hidden!important}
+.hero-art picture{display:block!important;width:100%!important;height:100%!important}
+.hero-art .media-img{display:block!important;width:100%!important;height:100%!important;max-width:none!important;min-height:0!important;object-fit:cover!important;object-position:center center!important}
+.price-strip{grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr)!important;gap:14px!important}
+.price-card{min-width:0!important;padding:18px!important}
+.premium-label{display:inline-flex!important;align-items:center!important;border:1px solid rgba(216,180,90,.65)!important;color:var(--gold2)!important;background:rgba(216,180,90,.08)!important;border-radius:7px!important;padding:7px 12px!important;font:900 clamp(12px,1vw,15px)/1 Inter,Arial,sans-serif!important;letter-spacing:.16em!important;text-transform:uppercase!important}
+.limited-offer{display:inline-block!important;color:#ff4652!important;border-color:#ff4652!important;background:linear-gradient(145deg,rgba(225,6,19,.13),rgba(225,6,19,.035))!important;font-family:Impact,Haettenschweiler,"Arial Narrow Bold",sans-serif!important;font-weight:950!important;letter-spacing:.10em!important;text-shadow:0 1px 14px rgba(225,6,19,.22)!important;box-shadow:5px 5px 0 rgba(225,6,19,.10)!important}
+.trigger-panel{border:1px solid rgba(225,6,19,.36)!important;background:linear-gradient(145deg,rgba(225,6,19,.10),rgba(255,255,255,.025))!important;border-radius:16px!important;padding:14px 15px!important}
+.trigger-title{display:block!important;margin-top:10px!important;font-size:clamp(13px,1.1vw,16px)!important;letter-spacing:.04em!important}
+.trigger-rates{margin-top:4px!important;font-size:clamp(18px,1.7vw,24px)!important;font-weight:900!important}
+.trigger-rates span{font-size:.62em!important;font-weight:600!important;color:var(--muted)!important}
+.neutral-ribbon{background:rgba(216,180,90,.15)!important;color:var(--gold2)!important;border:1px solid rgba(216,180,90,.35)!important}
+.wa-only{width:70px!important;height:70px!important;min-width:70px!important;min-height:70px!important;padding:0!important;background:var(--green)!important;color:#06130b!important;border-radius:50%!important}
+.wa-only .wa-icon{width:43px!important;height:43px!important}
+.float-wa{right:24px!important;bottom:24px!important}
+.float-wa .cta{width:76px!important;height:76px!important;min-width:76px!important;min-height:76px!important;border-radius:50%!important}
+.float-wa .wa-icon{width:45px!important;height:45px!important}
+.topbar .logo{width:170px!important}
+.footer .logo{width:210px!important}
+.footer{padding-bottom:110px!important}
+@media(max-width:900px){
+ .topbar .logo{width:130px!important}.footer .logo{width:170px!important}
+ .hero-art{aspect-ratio:4/5!important}.hero-art .media-img{object-position:52% 50%!important}
+ .price-strip{grid-template-columns:1fr 1fr!important}
+ .wa-only{width:64px!important;height:64px!important;min-width:64px!important;min-height:64px!important}
+ .wa-only .wa-icon{width:38px!important;height:38px!important}
+ .float-wa{right:14px!important;bottom:14px!important}
+ .float-wa .cta{width:66px!important;height:66px!important;min-width:66px!important;min-height:66px!important}
+ .float-wa .wa-icon{width:40px!important;height:40px!important}
+}
+@media(max-width:600px){
+ .hero-grid{gap:18px!important}.hero-image{border-radius:18px!important}
+ .price-strip{grid-template-columns:1fr!important;gap:10px!important}
+ .hero-art{aspect-ratio:4/5!important}.hero-art .media-img{object-position:52% 50%!important}
+ .topbar .logo{width:118px!important}.footer .logo{width:155px!important}
+ .wa-only{width:62px!important;height:62px!important;min-width:62px!important;min-height:62px!important}
+ .wa-only .wa-icon{width:37px!important;height:37px!important}
+ .float-wa .cta{width:62px!important;height:62px!important;min-width:62px!important;min-height:62px!important}
+ .float-wa .wa-icon{width:37px!important;height:37px!important}
+ .footer{padding-bottom:92px!important}
+}
+`;
+  function patch(){
+    try{
+      const d=frame.contentDocument;
+      if(!d||!d.body)return;
+      if(!d.getElementById('kms-v12-1-final-css')){const st=d.createElement('style');st.id='kms-v12-1-final-css';st.textContent=css;d.head.appendChild(st)}
+      if(d.title)d.title='KMS Rental | A200 AMG Service Catalogue — V12.1';
+      const ps=d.querySelector('.hero-copy .price-strip');
+      if(ps)ps.innerHTML=`<div class="price-card"><div class="premium-label"><span>PREMIUM FLEX</span></div><div class="big limited-price">RM499</div><small>per day · unlimited mileage</small></div><div class="price-card"><div class="limited-offer"><span>LIMITED OFFER</span></div><div class="big limited-price">RM390 / RM288</div><small>RM390/day · minimum 3 days · RM288/day · 4 days+</small></div>`;
+      const rates=d.querySelector('#rates .split');
+      if(rates)rates.innerHTML=`<div class="panel"><div class="premium-label"><span>PREMIUM FLEX</span></div><div class="limited-price" style="font-size:clamp(42px,5vw,64px);margin-top:12px">RM499</div><div class="muted">per day · unlimited mileage</div><div class="trigger-panel"><div class="limited-offer"><span>LIMITED OFFER</span></div><b class="trigger-title">Longer rental trigger</b><div class="trigger-rates">RM390/day <span>· minimum 3 days</span> &nbsp;|&nbsp; RM288/day <span>· 4 days+</span></div></div><div class="rate-grid" style="margin-top:16px"><div class="rate"><b>3 Hours</b><strong>RM300</strong></div><div class="rate"><b>4 Hours</b><strong>RM400</strong></div><div class="rate"><b>1 Day</b><strong>RM499</strong></div><div class="rate"><b>2 Days</b><strong>RM949</strong></div><div class="rate"><b>3 Days</b><strong>RM1,170</strong></div><div class="rate"><b>4 Days</b><strong>RM1,152</strong></div><div class="rate"><b>5 Days</b><strong>RM1,440</strong></div><div class="rate"><b>6 Days</b><strong>RM1,728</strong></div><div class="rate"><b>7 Days</b><strong>RM2,016</strong></div><div class="rate"><b>15–29 Days</b><strong>Quotation</strong></div><div class="rate"><b>Monthly</b><strong>Quotation</strong></div><div class="rate"><b>Corporate</b><strong>Quotation</strong></div></div></div><div class="panel"><div class="kicker">Unlimited Mileage</div><p class="lead" style="font-size:18px;margin-top:12px"><b>Drive without a mileage cap.</b></p><div class="notice" style="margin-top:18px"><b>Security deposit: RM300/day.</b><br>Refundable after vehicle return and inspection, subject to outstanding liabilities or damage.</div><div class="notice" style="margin-top:12px">Self-drive delivery &amp; collection are available within Klang Valley only. RM50 per delivery trip and RM50 per collection trip.</div><div class="notice" style="margin-top:12px">Outside Klang Valley: no delivery or collection service.</div></div>`;
+      const pg=d.querySelector('#packages .package-grid');
+      if(pg){const p=pg.querySelectorAll('.package');if(p[0])p[0].innerHTML='<h3>Basic</h3><div class="muted">No Decoration</div><div class="amount">RM499 <span class="small">/ day</span></div><ul><li>Mercedes-Benz A200 AMG</li><li>No wedding decoration</li><li>Professional service</li></ul>';if(p[1])p[1].innerHTML='<span class="ribbon neutral-ribbon">WITH DECORATION</span><h3 style="margin-top:16px">Decorated</h3><div class="muted">Wedding decoration included</div><div class="amount">RM699 <span class="small">/ day</span></div><ul><li>Mercedes-Benz A200 AMG</li><li>Wedding decoration included</li><li>Professional wedding setup</li><li>Professional service</li></ul>';}
+      d.querySelectorAll('li').forEach(el=>{el.textContent=el.textContent.replace(/Mileage allowance follows rental period\./gi,'Self-Drive mileage is unlimited.').replace(/Excess mileage: RM1\/km\./gi,'No excess mileage charge applies.').replace(/Self-Drive daily allowance is 200 km\/day\./gi,'Self-Drive mileage is unlimited.').replace(/200 km\/day/gi,'Unlimited mileage')});
+      d.querySelectorAll('.vip-rate-list li').forEach(el=>{el.textContent=el.textContent.replace(/\s*·\s*Normal.*$/i,'')});
+      d.querySelectorAll('.vip-rate-list p').forEach(el=>{el.textContent='VIP chauffeur rates are exclusive member rates.'});
+      d.querySelectorAll('.wa-only').forEach(a=>a.classList.remove('cta-red'));
+      const weddingSituations=[...d.querySelectorAll('.situation')].find(x=>/Wedding/i.test(x.textContent));if(weddingSituations){const sp=weddingSituations.querySelector('span');if(sp)sp.textContent='Basic and Decorated package options.'}
+      const walker=d.createTreeWalker(d.body,NodeFilter.SHOW_TEXT);const rm=[];while(walker.nextNode()){if(/V11 FINAL AUDIT|V11 FINAL CLEAN AUDIT|final visual audit/i.test(walker.currentNode.nodeValue||''))rm.push(walker.currentNode)}rm.forEach(x=>x.remove());
+      const optionScript=[...d.scripts].find(x=>(x.textContent||'').includes('"Wedding"'));if(optionScript){optionScript.textContent=optionScript.textContent.replace('"Wedding":["Basic Package","Signature Package","Premium Package"]','"Wedding":["Basic Package — No Decoration","Decorated Package — RM699"]')}
+    }catch(e){console.error('KMS V12.1 patch',e)}
+  }
+  frame.addEventListener('load',patch);
+  [500,1200,2500,5000].forEach(t=>setTimeout(patch,t));
+})();
+</script>
+</body>
+</html>
