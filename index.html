@@ -4,24 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>KMS Rental — A200 AMG Service Catalogue</title>
-<style>html,body{margin:0;background:#050607;color:#fff;font-family:Arial,sans-serif}#status{padding:24px;text-align:center}</style>
 </head>
 <body>
-<div id="status">Loading KMS Rental A200 AMG Service Catalogue…</div>
-<script>
-(async()=>{
-  try{
-    const r=await fetch('./KMS_A200_AMG_Service_Catalog_EN_V11_FINAL_CLEAN.html',{cache:'no-store'});
-    if(!r.ok) throw new Error('Catalog unavailable');
-    let html=await r.text();
-    html=html.replace(/&lt;!--\s*HERO RESPONSIVE IMAGE SPEC:[\s\S]*?--&gt;/i,'');
-    document.open();
-    document.write(html);
-    document.close();
-  }catch(e){
-    document.getElementById('status').textContent='Unable to load the catalogue. Please refresh.';
-  }
-})();
-</script>
+<script>location.replace('./KMS_A200_AMG_Service_Catalog_EN_V11_1_CLEAN.html');</script>
+<noscript><a href="./KMS_A200_AMG_Service_Catalog_EN_V11_1_CLEAN.html">Open KMS Rental A200 AMG Service Catalogue</a></noscript>
 </body>
 </html>
