@@ -9,7 +9,7 @@
 <div id="loader" style="padding:24px;font-family:Arial,sans-serif;min-height:100vh">Loading KMS Rental…</div>
 <script>
 (function(){
-  var src='./KMS_A200_AMG_Service_Catalog_EN_V12_1_FINAL_REFINED.html?v=12.1-final-6';
+  var src='./KMS_A200_AMG_Service_Catalog_EN_V12_1_FINAL_REFINED.html?v=12.1-final-7';
   fetch(src,{cache:'no-store'}).then(function(r){
     if(!r.ok) throw new Error('Catalogue load failed: '+r.status);
     return r.text();
@@ -18,17 +18,19 @@
       'html,body{max-width:100%!important;overflow-x:hidden!important}\n'+
       '.topbar .cta-red,.hero .wa-only{display:none!important}\n'+
       '#chauffeur .kicker-icon{display:none!important}\n'+
-      '.hero.page{min-height:0!important;height:auto!important;margin:0!important;padding-top:38px!important;padding-bottom:48px!important;display:block!important}\n'+
-      '.hero-grid{height:auto!important;min-height:0!important;align-items:start!important}\n'+
+      '.page{display:block!important;min-height:0!important;height:auto!important;padding:56px 0!important;align-items:initial!important;box-sizing:border-box!important}\n'+
+      '.page>.container{height:auto!important;min-height:0!important}\n'+
+      '.hero.page{display:block!important;min-height:0!important;height:auto!important;margin:0!important;padding:42px 0 56px!important}\n'+
+      '.hero-grid{display:grid!important;height:auto!important;min-height:0!important;align-items:start!important}\n'+
       '.hero-copy{align-self:start!important}\n'+
       '.hero-image{min-height:0!important;height:auto!important;aspect-ratio:16/9!important;align-self:start!important}\n'+
       '.hero-image .hero-art{width:100%!important;height:auto!important;min-height:0!important;aspect-ratio:16/9!important;position:relative!important;overflow:hidden!important}\n'+
       '.hero-image .hero-device{display:block!important;width:100%!important;height:auto!important;min-height:0!important;object-fit:cover!important}\n'+
       '.hero-image .hero-desktop{display:block!important}\n'+
       '.hero-image .hero-mobile{display:none!important}\n'+
+      '.section-head{margin-bottom:27px!important}\n'+
       '#final .visual-banner,#final .banner-next,#final .visual-copy,#final .final-frame,#final .media-frame,#final .visual-frame{display:none!important}\n'+
-      '#final{min-height:0!important;height:auto!important;padding-bottom:48px!important}\n'+
-      '#final .container{min-height:0!important;height:auto!important}\n'+
+      '#final{min-height:0!important;height:auto!important;padding:56px 0!important}\n'+
       '.footer{padding-top:30px!important;padding-bottom:34px!important}\n'+
       '.footer .logo{max-width:145px!important}\n'+
       '.footer .container{gap:12px!important}\n'+
@@ -36,17 +38,18 @@
       '.float-wa .cta{width:58px!important;height:58px!important;min-width:58px!important;min-height:58px!important}\n'+
       '.float-wa .wa-icon{width:34px!important;height:34px!important}\n'+
       '@media(max-width:700px){'+
-      '.page{min-height:0!important;height:auto!important;padding-top:38px!important;padding-bottom:40px!important}'+
-      '.hero.page{padding-top:22px!important;padding-bottom:34px!important}'+
-      '.hero-grid{grid-template-columns:1fr!important;gap:22px!important;align-items:start!important;height:auto!important;min-height:0!important}'+
+      '.page{display:block!important;min-height:0!important;height:auto!important;padding:46px 0!important;align-items:initial!important}'+
+      '.hero.page{padding:22px 0 34px!important}'+
+      '.hero-grid{grid-template-columns:1fr!important;gap:18px!important;align-items:start!important;height:auto!important;min-height:0!important}'+
       '.hero-copy,.hero-image{width:100%!important;min-width:0!important;align-self:start!important}'+
       '.hero-copy{order:1!important}'+
       '.hero-image{order:2!important;aspect-ratio:4/5!important}'+
       '.hero-image .hero-art{aspect-ratio:4/5!important;height:auto!important;min-height:0!important}'+
       '.hero-image .hero-desktop{display:none!important}'+
       '.hero-image .hero-mobile{display:block!important;width:100%!important;height:auto!important;min-height:0!important;object-fit:cover!important}'+
+      '.section-head{margin-bottom:20px!important}'+
       '.price-strip{grid-template-columns:1fr 1fr!important}'+
-      '#final.page{padding-top:50px!important;padding-bottom:36px!important}'+
+      '#final.page{padding:46px 0!important}'+
       '#final h2{font-size:clamp(34px,9vw,52px)!important;line-height:1.03!important}'+
       '#final .lead{font-size:16px!important;line-height:1.5!important;padding:0 10px}'+
       '#final .visual-banner,#final .banner-next,#final .visual-copy,#final .final-frame,#final .media-frame,#final .visual-frame{display:none!important}'+
@@ -63,7 +66,7 @@
       '["BOOK SELF-DRIVE","BOOK CHAUFFEUR","PLAN THIS JOURNEY","REQUEST CORPORATE QUOTE","PLAN OUTSTATION","JOIN / ASK ABOUT VIP"].forEach(removeButton);\n'+
       'var final=document.getElementById("final");\n'+
       'if(final){final.querySelectorAll(".visual-banner,.banner-next,.visual-copy,.final-frame,.media-frame,.visual-frame").forEach(function(el){el.remove();});final.querySelectorAll(".actions").forEach(function(el){el.remove();});}\n'+
-      'document.documentElement.setAttribute("data-kms-version","12.1-final-6");\n'+
+      'document.documentElement.setAttribute("data-kms-version","12.1-final-7");\n'+
       '})();<'+'/script>';
     html=html.replace('</body>',js+'</body>');
     document.open();document.write(html);document.close();
