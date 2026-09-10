@@ -9,7 +9,7 @@
 <div id="loader" style="padding:24px;font-family:Arial,sans-serif;min-height:100vh">Loading KMS Rental…</div>
 <script>
 (function(){
-  var src='./KMS_A200_AMG_Service_Catalog_EN_V12_1_FINAL_REFINED.html?v=12.1-final-3';
+  var src='./KMS_A200_AMG_Service_Catalog_EN_V12_1_FINAL_REFINED.html?v=12.1-final-4';
   fetch(src,{cache:'no-store'}).then(function(r){
     if(!r.ok) throw new Error('Catalogue load failed: '+r.status);
     return r.text();
@@ -27,9 +27,10 @@
       '.hero-image .hero-device{display:block!important;width:100%!important;height:auto!important;min-height:0!important;object-fit:cover!important}\n'+
       '.hero-image .hero-desktop{display:block!important}\n'+
       '.hero-image .hero-mobile{display:none!important}\n'+
-      '#final .visual-banner{aspect-ratio:16/9!important;min-height:0!important;height:auto!important;margin:18px auto 0!important;overflow:hidden!important}\n'+
-      '#final .visual-banner .media-img{position:relative!important;display:block!important;width:100%!important;height:auto!important;min-height:0!important;aspect-ratio:auto!important;object-fit:contain!important;object-position:center!important}\n'+
-      '#final .visual-banner .visual-copy{z-index:3!important}\n'+
+      '#final .visual-banner{display:none!important}\n'+
+      '#final .visual-copy{display:none!important}\n'+
+      '#final .final-frame,#final .media-frame,#final .visual-frame{display:none!important}\n'+
+      '#final{min-height:0!important;padding-bottom:48px!important}\n'+
       '.footer{padding-top:30px!important;padding-bottom:34px!important}\n'+
       '.footer .logo{max-width:145px!important}\n'+
       '.footer .container{gap:12px!important}\n'+
@@ -47,10 +48,7 @@
       '#final.page{padding-top:50px!important;padding-bottom:36px!important}'+
       '#final h2{font-size:clamp(34px,9vw,52px)!important;line-height:1.03!important}'+
       '#final .lead{font-size:16px!important;line-height:1.5!important;padding:0 10px}'+
-      '#final .visual-banner{aspect-ratio:16/9!important;margin-top:18px!important;border-radius:18px!important}'+
-      '#final .visual-banner .media-img{width:100%!important;height:auto!important;object-fit:contain!important}'+
-      '#final .visual-banner .visual-copy{left:16px!important;right:16px!important;bottom:14px!important}'+
-      '#final .visual-banner .visual-copy b{font-size:clamp(21px,6vw,30px)!important}'+
+      '#final .visual-banner,#final .visual-copy,#final .final-frame,#final .media-frame,#final .visual-frame{display:none!important}'+
       '.footer{padding-top:24px!important;padding-bottom:30px!important}'+
       '.footer .logo{max-width:132px!important}'+
       '.float-wa{right:12px!important;bottom:12px!important}'+
@@ -66,7 +64,7 @@
       'var ch=document.querySelector("#chauffeur"),guide=[...document.querySelectorAll("section")].find(function(s){return s.textContent.indexOf("08 · VISUAL SERVICE GUIDE")>-1;});\n'+
       'if(ch&&!ch.querySelector(".chauffeur-visual")&&guide){var airport=guide.querySelector(".scene-airport"),img=airport&&airport.querySelector("img"),rg=ch.querySelector(".rate-grid");if(img&&rg){var v=document.createElement("div");v.className="visual-banner chauffeur-visual";v.setAttribute("role","img");v.setAttribute("aria-label","KMS Rental Mercedes-Benz A200 AMG Line — Chauffeur and Airport Transfer");var ni=img.cloneNode(true);ni.className="media-img";ni.alt="KMS Rental Mercedes-Benz A200 AMG Line — Chauffeur and Airport Transfer";v.appendChild(ni);rg.before(v);airport.remove();}}\n'+
       'var final=document.querySelector("#final");if(final){var act=final.querySelector(".actions");if(act)act.remove();}\n'+
-      'document.documentElement.setAttribute("data-kms-version","12.1-final-3");\n'+
+      'document.documentElement.setAttribute("data-kms-version","12.1-final-4");\n'+
       '})();<'+'/script>';
     html=html.replace('</body>',js+'</body>');
     document.open();document.write(html);document.close();
