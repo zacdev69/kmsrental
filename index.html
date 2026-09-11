@@ -15,22 +15,26 @@
     const r=await fetch(stableUrl,{cache:"no-store"});
     let h=await r.text();
     if(!h || h.length<10000) throw new Error("stable build unavailable");
-    h=h.replace(/KMS_A200_AMG_Service_Catalog_EN_V12_1_FINAL_REFINED\.html[^'"]*/g,"KMS_DISABLED_SOURCE");
+    h=h.replace(/KMS_A200_AMG_Service_Catalog_EN_V12_1_FINAL_REFINED\.html[^'\"]*/g,"KMS_DISABLED_SOURCE");
     const css=`
       .kms-brand-img{display:block;width:142px;height:58px;object-fit:contain;object-position:left center}
-      .kms-visuals{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;width:100%}
-      .kms-visual{margin:0;border:1px solid var(--l,#292d30);border-radius:16px;overflow:hidden;background:#0c0f10;min-width:0}
-      .kms-visual img{display:block;width:100%;aspect-ratio:16/10;height:auto;object-fit:cover;object-position:center}
-      .kms-visual figcaption{padding:9px 11px;background:#0b0e0f;color:#8f9295;font-size:8px;font-weight:900;letter-spacing:1.6px}
-      .hero-img{width:100%;height:auto!important;aspect-ratio:1200/751;overflow:hidden}
-      .hero-img img{width:100%;height:100%;object-fit:cover;object-position:center!important;display:block}
+      .kms-hero-carousel{position:relative;width:100%;aspect-ratio:16/10;overflow:hidden;border-radius:16px;background:#0b0e0f;border:1px solid #292d30;isolation:isolate}
+      .kms-hero-slide{position:absolute;inset:0;opacity:0;transition:opacity .65s ease;pointer-events:none}
+      .kms-hero-slide.is-active{opacity:1;pointer-events:auto}
+      .kms-hero-slide img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+      .kms-hero-dots{position:absolute;left:0;right:0;bottom:12px;display:flex;justify-content:center;gap:6px;z-index:5}
+      .kms-hero-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.42);border:0;padding:0;transition:all .25s ease}
+      .kms-hero-dot.is-active{width:18px;border-radius:6px;background:#f1d48b}
+      .kms-hero-caption{position:absolute;left:12px;bottom:11px;z-index:5;padding:6px 9px;border-radius:7px;background:rgba(5,6,7,.62);backdrop-filter:blur(5px);font-size:7px;font-weight:900;letter-spacing:1.45px;color:#f2eee4}
+      .hero-img{width:100%;height:auto!important;aspect-ratio:16/10;overflow:hidden}
+      .hero-img>img{width:100%;height:100%;object-fit:cover;display:block}
       @media(max-width:700px){
         .kms-brand-img{width:125px;height:54px}
-        .kms-visuals{gap:8px;margin-top:8px}
-        .kms-visual{border-radius:14px}
-        .kms-visual img{aspect-ratio:4/3}
-        .kms-visual figcaption{font-size:7px;padding:8px}
-        .hero-img{aspect-ratio:16/10}
+        .kms-hero-carousel{aspect-ratio:16/10;border-radius:15px}
+        .kms-hero-caption{left:9px;bottom:9px;font-size:6.5px;padding:5px 7px}
+        .kms-hero-dots{bottom:9px;gap:5px}
+        .kms-hero-dot{width:4px;height:4px}
+        .kms-hero-dot.is-active{width:15px}
       }
     `;
     const sourceScript=`
@@ -41,8 +45,12 @@
           const d=new DOMParser().parseFromString(s,"text/html");
           const logo=d.querySelector("img.logo");
           const hero=d.querySelector("img.hero-desktop");
-          const front=d.querySelector('img[alt*="Full Car"]');
-          const rear=d.querySelector('img[alt*="Corporate"]');
+          const visuals=[
+            hero,
+            d.querySelector('img[alt*="airport" i]'),
+            d.querySelector('img[alt*="wedding" i]'),
+            d.querySelector('img[alt*="couple" i]')
+          ].filter(Boolean);
           const brand=document.querySelector(".brand");
           if(brand && logo){
             brand.innerHTML="";
@@ -52,23 +60,56 @@
             li.alt="KMS Rental — Drive a Better Tomorrow";
             brand.appendChild(li);
           }
-          const hi=document.querySelector(".hero-img img");
-          if(hi && hero) hi.src=hero.getAttribute("src");
-          const wrap=document.querySelector(".hero-img");
-          if(wrap && !document.querySelector(".kms-visuals")){
-            const grid=document.createElement("div");
-            grid.className="kms-visuals";
-            const make=(src,cap,alt)=>{
-              const f=document.createElement("figure"); f.className="kms-visual";
-              const im=document.createElement("img"); im.src=src; im.alt=alt;
-              const c=document.createElement("figcaption"); c.textContent=cap;
-              f.append(im,c); return f;
-            };
-            if(front) grid.appendChild(make(front.getAttribute("src"),"FRONT VIEW · A200 AMG LINE","Mercedes-Benz A200 AMG Line front view"));
-            if(rear) grid.appendChild(make(rear.getAttribute("src"),"REAR VIEW · A200 AMG LINE","Mercedes-Benz A200 AMG Line rear view"));
-            wrap.parentNode.insertBefore(grid,wrap.nextSibling);
+          const oldHero=document.querySelector(".hero-img");
+          if(oldHero && visuals.length){
+            const carousel=document.createElement("div");
+            carousel.className="kms-hero-carousel";
+            const dots=document.createElement("div");
+            dots.className="kms-hero-dots";
+            const labels=["KMS RENTAL · A200 AMG LINE","CHAUFFEUR · AIRPORT & HOTEL","WEDDING · SPECIAL OCCASION","COUPLES · CITY LEISURE"];
+            visuals.forEach((v,i)=>{
+              const slide=document.createElement("div");
+              slide.className="kms-hero-slide"+(i===0?" is-active":"");
+              const im=document.createElement("img");
+              im.src=v.getAttribute("src");
+              im.alt=v.getAttribute("alt")||"KMS Rental Mercedes-Benz A200 AMG Line";
+              slide.appendChild(im);
+              carousel.appendChild(slide);
+              const dot=document.createElement("button");
+              dot.type="button";
+              dot.className="kms-hero-dot"+(i===0?" is-active":"");
+              dot.setAttribute("aria-label","Show slide "+(i+1));
+              dot.addEventListener("click",()=>show(i));
+              dots.appendChild(dot);
+            });
+            const cap=document.createElement("div");
+            cap.className="kms-hero-caption";
+            cap.textContent=labels[0];
+            carousel.appendChild(cap);
+            carousel.appendChild(dots);
+            oldHero.replaceWith(carousel);
+            const slides=[...carousel.querySelectorAll(".kms-hero-slide")];
+            const ds=[...dots.children];
+            let current=0;
+            let timer;
+            function show(i){
+              current=i%slides.length;
+              slides.forEach((x,n)=>x.classList.toggle("is-active",n===current));
+              ds.forEach((x,n)=>x.classList.toggle("is-active",n===current));
+              cap.textContent=labels[current]||labels[0];
+              clearInterval(timer);
+              timer=setInterval(()=>show(current+1),4500);
+            }
+            timer=setInterval(()=>show(current+1),4500);
+            let startX=0;
+            carousel.addEventListener("touchstart",e=>{startX=e.touches[0].clientX},{passive:true});
+            carousel.addEventListener("touchend",e=>{const dx=e.changedTouches[0].clientX-startX;if(Math.abs(dx)>45)show(current+(dx<0?1:-1));},{passive:true});
+          }else if(oldHero && hero){
+            const hi=oldHero.querySelector("img");
+            if(hi) hi.src=hero.getAttribute("src");
           }
-          document.documentElement.dataset.kmsVersion="12.10-visual-restored";
+          document.querySelectorAll(".kms-visuals").forEach(x=>x.remove());
+          document.documentElement.dataset.kmsVersion="12.11-hero-carousel-16x10";
         }catch(e){}
       })()
     `;
