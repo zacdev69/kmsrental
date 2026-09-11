@@ -1,1 +1,87 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#050607"><meta http-equiv="Cache-Control" content="no-cache,no-store,must-revalidate"><meta http-equiv="Pragma" content="no-cache"><title>KMS Rental — Mercedes-Benz A200 AMG Line</title></head><body style="margin:0;background:#050607;color:#f5f3ed"><script>(async()=>{try{const r=await fetch("https://raw.githubusercontent.com/zacdev69/kmsrental/a3ed490915c1b629b8c0265a6663160aeccd743f/index.html?cb="+Date.now(),{cache:"no-store"});let h=await r.text();if(!h||h.length<10000)throw 0;h=h.replace("</body>",`<script>(async()=>{try{const r=await fetch("./KMS_A200_AMG_Service_Catalog_EN_V12_1_FINAL_REFINED.html?cb="+Date.now(),{cache:"no-store"});const s=await r.text();const d=new DOMParser().parseFromString(s,"text/html"),a=[...d.images].map(x=>x.getAttribute("src")||""),i=[...document.images];if(a[0]&&i[0])i[0].src=a[0];if(a[1]&&i[1])i[1].src=a[1];if(a[1]&&i[2])i[2].src=a[1];if(a[13]&&i[3])i[3].src=a[13];document.documentElement.dataset.kmsVersion="12.9-responsive-final"}catch(e){}})()<\/script></body>`);document.open();document.write(h);document.close()}catch(e){document.body.innerHTML="<main style=\"padding:24px;font:16px Arial\">KMS Rental is loading. Refresh once.</main>"}})();</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#050607">
+<title>KMS Rental — Mercedes-Benz A200 AMG Line</title>
+</head>
+<body style="margin:0;background:#050607;color:#f5f3ed">
+<script>
+(async()=>{
+  try{
+    const stableUrl="https://raw.githubusercontent.com/zacdev69/kmsrental/a3ed490915c1b629b8c0265a6663160aeccd743f/index.html?cb="+Date.now();
+    const sourceUrl="./KMS_A200_AMG_Service_Catalog_EN_V12_1_FINAL_REFINED.html?cb="+Date.now();
+    const r=await fetch(stableUrl,{cache:"no-store"});
+    let h=await r.text();
+    if(!h || h.length<10000) throw new Error("stable build unavailable");
+    h=h.replace(/KMS_A200_AMG_Service_Catalog_EN_V12_1_FINAL_REFINED\.html[^'"]*/g,"KMS_DISABLED_SOURCE");
+    const css=`
+      .kms-brand-img{display:block;width:142px;height:58px;object-fit:contain;object-position:left center}
+      .kms-visuals{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;width:100%}
+      .kms-visual{margin:0;border:1px solid var(--l,#292d30);border-radius:16px;overflow:hidden;background:#0c0f10;min-width:0}
+      .kms-visual img{display:block;width:100%;aspect-ratio:16/10;height:auto;object-fit:cover;object-position:center}
+      .kms-visual figcaption{padding:9px 11px;background:#0b0e0f;color:#8f9295;font-size:8px;font-weight:900;letter-spacing:1.6px}
+      .hero-img{width:100%;height:auto!important;aspect-ratio:1200/751;overflow:hidden}
+      .hero-img img{width:100%;height:100%;object-fit:cover;object-position:center!important;display:block}
+      @media(max-width:700px){
+        .kms-brand-img{width:125px;height:54px}
+        .kms-visuals{gap:8px;margin-top:8px}
+        .kms-visual{border-radius:14px}
+        .kms-visual img{aspect-ratio:4/3}
+        .kms-visual figcaption{font-size:7px;padding:8px}
+        .hero-img{aspect-ratio:16/10}
+      }
+    `;
+    const sourceScript=`
+      (async()=>{
+        try{
+          const r=await fetch("${sourceUrl}",{cache:"no-store"});
+          const s=await r.text();
+          const d=new DOMParser().parseFromString(s,"text/html");
+          const logo=d.querySelector("img.logo");
+          const hero=d.querySelector("img.hero-desktop");
+          const front=d.querySelector('img[alt*="Full Car"]');
+          const rear=d.querySelector('img[alt*="Corporate"]');
+          const brand=document.querySelector(".brand");
+          if(brand && logo){
+            brand.innerHTML="";
+            const li=document.createElement("img");
+            li.className="kms-brand-img";
+            li.src=logo.getAttribute("src");
+            li.alt="KMS Rental — Drive a Better Tomorrow";
+            brand.appendChild(li);
+          }
+          const hi=document.querySelector(".hero-img img");
+          if(hi && hero) hi.src=hero.getAttribute("src");
+          const wrap=document.querySelector(".hero-img");
+          if(wrap && !document.querySelector(".kms-visuals")){
+            const grid=document.createElement("div");
+            grid.className="kms-visuals";
+            const make=(src,cap,alt)=>{
+              const f=document.createElement("figure"); f.className="kms-visual";
+              const im=document.createElement("img"); im.src=src; im.alt=alt;
+              const c=document.createElement("figcaption"); c.textContent=cap;
+              f.append(im,c); return f;
+            };
+            if(front) grid.appendChild(make(front.getAttribute("src"),"FRONT VIEW · A200 AMG LINE","Mercedes-Benz A200 AMG Line front view"));
+            if(rear) grid.appendChild(make(rear.getAttribute("src"),"REAR VIEW · A200 AMG LINE","Mercedes-Benz A200 AMG Line rear view"));
+            wrap.parentNode.insertBefore(grid,wrap.nextSibling);
+          }
+          document.documentElement.dataset.kmsVersion="12.10-visual-restored";
+        }catch(e){}
+      })()
+    `;
+    const LT=String.fromCharCode(60), GT=String.fromCharCode(62);
+    const styleTag=LT+"style"+GT+css+LT+"/style"+GT;
+    const scriptTag=LT+"script"+GT+sourceScript+LT+"/scr"+"ipt"+GT;
+    h=h.replace("</head>",styleTag+"</head>");
+    h=h.replace("</body>",scriptTag+"</body>");
+    document.open(); document.write(h); document.close();
+  }catch(e){
+    document.body.innerHTML="<main style='padding:24px;font:16px Arial'>KMS Rental is loading. Please refresh once.</main>";
+  }
+})();
+</script>
+</body>
+</html>
