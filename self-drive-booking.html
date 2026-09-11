@@ -6,9 +6,9 @@
 <meta name="theme-color" content="#050607">
 <title>KMS Rental — Self-Drive Booking</title>
 <style>
-:root{--bg:#050607;--panel:#0b0d0f;--gold:#d8b45a;--gold2:#f4dc98;--red:#e10613;--green:#1fc76b;--white:#f6f6f2;--muted:#a6a8ab}
+:root{--bg:#050607;--panel:#0b0d0f;--panel2:#111417;--gold:#d8b45a;--gold2:#f4dc98;--red:#e10613;--green:#1fc76b;--white:#f6f6f2;--muted:#a6a8ab;--line:rgba(216,180,90,.3)}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 85% 0,rgba(216,180,90,.1),transparent 28rem),var(--bg);color:var(--white);font-family:Inter,Arial,sans-serif;line-height:1.55}
-a{color:inherit;text-decoration:none}.wrap{width:min(920px,calc(100% - 28px));margin:auto}.top{padding:22px 0;border-bottom:1px solid rgba(255,255,255,.08)}.brand{font-weight:900;letter-spacing:.12em}.brand span{color:var(--red)}.page{padding:42px 0 70px}.kicker{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold2);font-weight:800}h1{font-family:Georgia,serif;font-size:clamp(38px,7vw,66px);line-height:.98;margin:10px 0 12px;letter-spacing:-.04em}.lead{color:#c6c8ca;max-width:680px}.card{margin-top:26px;background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018));border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:20px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.full{grid-column:1/-1}.field{display:grid;gap:6px}.field label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold2);font-weight:800}.field input,.field select{width:100%;border:1px solid rgba(255,255,255,.12);background:#080a0c;color:#fff;border-radius:10px;padding:12px;outline:0}.field input:focus,.field select:focus{border-color:var(--gold)}.maprow{display:grid;grid-template-columns:1fr auto;gap:8px}.btn{border:0;border-radius:999px;padding:11px 16px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}.green{background:var(--green);color:#06130b}.dark{background:#111;color:#fff;border:1px solid rgba(255,255,255,.12)}.upload{border:1px dashed rgba(216,180,90,.45);padding:15px;border-radius:13px;background:rgba(216,180,90,.04)}.file-name{font-size:12px;color:#d6d7d8;margin-top:5px}.status{display:none;margin-top:12px;padding:12px;border-radius:10px;background:rgba(31,199,107,.08);border:1px solid rgba(31,199,107,.3);font-size:12px}.status.show{display:block}.notice{border-left:3px solid var(--gold);padding:11px 13px;background:rgba(216,180,90,.06);font-size:12px;color:#c9cacc;margin:16px 0}.check{display:flex;gap:9px;align-items:flex-start;font-size:12px;color:#c8c9ca}.check input{margin-top:3px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.mini{font-size:10px;color:var(--muted);margin-top:9px}@media(max-width:650px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.maprow{grid-template-columns:1fr}.actions .btn{width:100%}}
+a{color:inherit;text-decoration:none}.wrap{width:min(920px,calc(100% - 28px));margin:auto}.top{padding:22px 0;border-bottom:1px solid rgba(255,255,255,.08)}.brand{font-weight:900;letter-spacing:.12em}.brand span{color:var(--red)}.page{padding:42px 0 70px}.kicker{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold2);font-weight:800}h1{font-family:Georgia,serif;font-size:clamp(38px,7vw,66px);line-height:.98;margin:10px 0 12px;letter-spacing:-.04em}.lead{color:#c6c8ca;max-width:680px}.card{margin-top:26px;background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.018));border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:20px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.full{grid-column:1/-1}.field{display:grid;gap:6px}.field label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold2);font-weight:800}.field input,.field select,.field textarea{width:100%;border:1px solid rgba(255,255,255,.12);background:#080a0c;color:#fff;border-radius:10px;padding:12px;outline:0}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold)}.maprow{display:grid;grid-template-columns:1fr auto;gap:8px}.btn{border:0;border-radius:999px;padding:11px 16px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}.red{background:var(--red);color:#fff}.green{background:var(--green);color:#06130b}.dark{background:#111;color:#fff;border:1px solid rgba(255,255,255,.12)}.upload{border:1px dashed rgba(216,180,90,.45);padding:15px;border-radius:13px;background:rgba(216,180,90,.04)}.upload small,.note{color:var(--muted);font-size:11px}.file-name{font-size:12px;color:#d6d7d8;margin-top:5px}.status{display:none;margin-top:12px;padding:12px;border-radius:10px;background:rgba(31,199,107,.08);border:1px solid rgba(31,199,107,.3);font-size:12px}.status.show{display:block}.notice{border-left:3px solid var(--gold);padding:11px 13px;background:rgba(216,180,90,.06);font-size:12px;color:#c9cacc;margin:16px 0}.check{display:flex;gap:9px;align-items:flex-start;font-size:12px;color:#c8c9ca}.check input{margin-top:3px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.mini{font-size:10px;color:var(--muted);margin-top:9px}.hidden{display:none!important}.summary{margin-top:18px;border:1px solid var(--line);border-radius:14px;padding:16px;background:rgba(216,180,90,.045)}.summary-title{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold2);font-weight:800}.summary-row{display:flex;justify-content:space-between;gap:12px;margin-top:8px;color:#d7d8da}.summary-row strong{color:#fff}.summary-total{margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.1);font-size:16px}.summary-note{font-size:10px;color:var(--muted);margin-top:9px}@media(max-width:650px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.maprow{grid-template-columns:1fr}.actions .btn{width:100%}}
 </style>
 </head>
 <body>
@@ -17,33 +17,159 @@ a{color:inherit;text-decoration:none}.wrap{width:min(920px,calc(100% - 28px));ma
 <div class="kicker">Self-Drive · Booking Verification</div>
 <h1>Book the A200.<br><span style="color:var(--gold2)">Drive with confidence.</span></h1>
 <p class="lead">Self-Drive applicants must provide identity, licence and current-address documents before KMS can complete booking verification.</p>
+
 <form id="form" class="card">
 <div class="grid">
 <div class="field"><label>Full Name *</label><input id="name" required autocomplete="name"></div>
 <div class="field"><label>WhatsApp / Mobile *</label><input id="contact" required autocomplete="tel"></div>
 <div class="field"><label>Rental Start Date *</label><input id="date" type="date" required></div>
 <div class="field"><label>Start Time *</label><input id="time" type="time" required></div>
-<div class="field"><label>Rental Period *</label><select id="period" required><option value="">Select</option><option>1 Day</option><option>2 Days</option><option>3 Days</option><option>4 Days</option><option>5 Days</option><option>6 Days</option><option>7 Days / Weekly</option><option>15–29 Days</option><option>Monthly / Long Rental</option></select></div>
-<div class="field full"><label>Pickup Location *</label><div class="maprow"><input id="pickup" required placeholder="Enter hotel, address, landmark or location"><button type="button" class="btn dark" onclick="openMaps('pickup')">Google Maps</button></div></div>
-<div class="field full"><label>Destination</label><div class="maprow"><input id="destination" placeholder="Where will you be travelling to?"><button type="button" class="btn dark" onclick="openMaps('destination')">Google Maps</button></div></div>
-<div class="field full"><label>Return Location *</label><div class="maprow"><input id="returnLocation" required placeholder="Where will the A200 be returned?"><button type="button" class="btn dark" onclick="openMaps('returnLocation')">Google Maps</button></div></div>
+<div class="field"><label>Rental Period *</label><select id="period" required onchange="updateBookingFields();updatePrice()"><option value="">Select</option><option>1 Day</option><option>2 Days</option><option>3 Days</option><option>4 Days</option><option>5 Days</option><option>6 Days</option><option>7 Days / Weekly</option><option>15–29 Days</option><option>Monthly / Long Rental</option></select></div>
+
+<div class="field full"><label>Self-Drive Service Method *</label><select id="method" required onchange="updateBookingFields();updatePrice()"><option value="">Select</option><option value="Self Pick-Up & Return">Self Pick-Up & Return</option><option value="Delivery & Collection">Delivery & Collection</option></select></div>
+
+<div id="locationFields" class="field full hidden">
+<label>Delivery & Collection Locations *</label>
+<div style="display:grid;gap:10px">
+<div><div class="note" style="margin-bottom:5px">Delivery Location</div><div class="maprow"><input id="pickup" placeholder="Search hotel, address, landmark or location"><button type="button" class="btn dark" onclick="openMaps('pickup')">Google Maps</button></div></div>
+<div><div class="note" style="margin-bottom:5px">Collection / Return Location</div><div class="maprow"><input id="returnLocation" placeholder="Search where the A200 will be collected"><button type="button" class="btn dark" onclick="openMaps('returnLocation')">Google Maps</button></div></div>
+</div>
+</div>
+
+<div class="field full"><div id="priceSummary" class="summary hidden"></div></div>
+
 <div class="field full"><label>Required Self-Drive Documents</label></div>
+
 <div class="upload"><label for="icFront">IC — Front *</label><input id="icFront" type="file" accept="image/jpeg,image/png,image/webp" required><div id="icFrontName" class="file-name">No file selected</div></div>
 <div class="upload"><label for="icBack">IC — Back *</label><input id="icBack" type="file" accept="image/jpeg,image/png,image/webp" required><div id="icBackName" class="file-name">No file selected</div></div>
 <div class="upload"><label for="licence">Valid Driving Licence *</label><input id="licence" type="file" accept="image/jpeg,image/png,image/webp" required><div id="licenceName" class="file-name">No file selected</div></div>
 <div class="upload"><label for="bill">Latest Utility Bill / Current Address *</label><input id="bill" type="file" accept="image/jpeg,image/png,image/webp,application/pdf" required><div id="billName" class="file-name">No file selected</div></div>
-<div class="field full"><div class="notice"><strong>Privacy:</strong> These documents are required for Self-Drive verification only. This page does not store the files on the website. On supported mobile browsers, the files are passed to the device share sheet so you can select WhatsApp. On unsupported browsers, WhatsApp opens with the booking details and you will be asked to attach the documents manually.</div><label class="check"><input id="consent" type="checkbox" required><span>I confirm that the information and documents provided are genuine, current and belong to me. I understand that Self-Drive booking is subject to KMS verification and confirmation.</span></label></div>
+
+<div class="field full">
+<div class="notice"><strong>Privacy:</strong> These documents are required for Self-Drive verification only. This page does not store the files on the website. On supported mobile browsers, the files are passed to the device share sheet so you can select WhatsApp. On unsupported browsers, WhatsApp opens with the booking details and you will be asked to attach the documents manually.</div>
+<label class="check"><input id="consent" type="checkbox" required><span>I confirm that the information and documents provided are genuine, current and belong to me. I understand that Self-Drive booking is subject to KMS verification and confirmation.</span></label>
 </div>
+</div>
+
 <div class="actions"><button class="btn green" type="submit">SEND BOOKING + DOCUMENTS →</button><a class="btn dark" href="https://wasap.my/60177933198/a200rent/booking">WhatsApp Booking</a></div>
-<div id="status" class="status"></div><div class="mini">Accepted document formats: JPG, PNG, WEBP. Utility bill also accepts PDF. Recommended maximum: 8 MB per file.</div>
-</form></div></main>
+<div id="status" class="status"></div>
+<div class="mini">Accepted document formats: JPG, PNG, WEBP. Utility bill also accepts PDF. Recommended maximum: 8 MB per file.</div>
+</form>
+</div></main>
 <script>
-const WA="60177933198", files=["icFront","icBack","licence","bill"];
-files.forEach(id=>document.getElementById(id).addEventListener("change",e=>{const f=e.target.files[0],n=document.getElementById(id+"Name");n.textContent=f?`${f.name} · ${Math.round(f.size/1024/1024*10)/10} MB`:"No file selected";if(f&&f.size>8*1024*1024){alert("Please keep each document below 8 MB.");e.target.value="";n.textContent="No file selected";}}));
-function openMaps(id){const v=document.getElementById(id).value.trim(),q=v||"Klang Valley Malaysia";window.open("https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(q),"_blank","noopener");}
-function text(){const g=id=>document.getElementById(id).value.trim();return ["KMS RENTAL — A200 AMG SELF-DRIVE BOOKING","","Name: "+g("name"),"WhatsApp / Mobile: "+g("contact"),"Rental Start: "+g("date")+" "+g("time"),"Rental Period: "+g("period"),"Pickup Location: "+g("pickup"),"Destination: "+(g("destination")||"Not specified"),"Return Location: "+g("returnLocation"),"","Documents: IC Front + IC Back + Valid Driving Licence + Latest Utility Bill / Current Address","","Please verify my Self-Drive booking and advise the applicable rate/deposit.","Thank you."].join("\n");}
-async function send(e){e.preventDefault();const form=e.target,status=document.getElementById("status");if(!form.checkValidity()){form.reportValidity();return}const selected=files.map(id=>document.getElementById(id).files[0]);if(selected.some(f=>!f)){form.reportValidity();return}const message=text();try{if(navigator.share&&navigator.canShare&&navigator.canShare({files:selected})){await navigator.share({title:"KMS A200 AMG Self-Drive Booking",text:message,files:selected});status.textContent="Booking details and documents are ready in the device share sheet. Select WhatsApp to send to KMS.";status.classList.add("show");return;}}catch(err){if(err&&err.name==="AbortError")return}window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(message),"_blank","noopener");status.innerHTML="WhatsApp has been opened with your booking details. <strong>Please attach the 4 required documents manually</strong> before sending.";status.classList.add("show");}
+const WA="60177933198";
+const files=["icFront","icBack","licence","bill"];
+files.forEach(id=>document.getElementById(id).addEventListener("change",e=>{
+ const f=e.target.files[0], n=document.getElementById(id+"Name"); n.textContent=f?`${f.name} · ${Math.round(f.size/1024/1024*10)/10} MB`:"No file selected";
+ if(f && f.size>8*1024*1024){alert("Please keep each document below 8 MB.");e.target.value="";n.textContent="No file selected";}
+}));
+
+const RATES={oneDay:499,twoDay:499,threeDay:390,fourPlus:388,depositPerDay:300,delivery:50,collection:50};
+function periodDays(){
+ const v=document.getElementById("period").value;
+ if(v==="1 Day") return 1;
+ if(v==="2 Days") return 2;
+ if(v==="3 Days") return 3;
+ if(v==="4 Days") return 4;
+ if(v==="5 Days") return 5;
+ if(v==="6 Days") return 6;
+ if(v==="7 Days / Weekly") return 7;
+ return null;
+}
+function updateBookingFields(){
+ const method=document.getElementById("method").value;
+ const loc=document.getElementById("locationFields");
+ const pickup=document.getElementById("pickup");
+ const ret=document.getElementById("returnLocation");
+ const needs=method==="Delivery & Collection";
+ loc.classList.toggle("hidden",!needs);
+ pickup.required=needs;
+ ret.required=needs;
+ if(!needs){pickup.value="";ret.value="";}
+ updatePrice();
+}
+function updatePrice(){
+ const box=document.getElementById("priceSummary");
+ const method=document.getElementById("method").value;
+ const days=periodDays();
+ if(!days){box.classList.add("hidden");box.innerHTML="";return;}
+ let rate=RATES.oneDay;
+ if(days===3) rate=RATES.threeDay;
+ if(days>=4) rate=RATES.fourPlus;
+ const rental=rate*days;
+ const deposit=RATES.depositPerDay*days;
+ let delivery=0,collection=0;
+ if(method==="Delivery & Collection"){delivery=RATES.delivery;collection=RATES.collection;}
+ const total=rental+delivery+collection+deposit;
+ box.innerHTML=`<div class="summary-title">Estimated Booking Summary</div>
+ <div class="summary-row"><span>A200 AMG Self-Drive · ${days} day${days>1?"s":""}</span><strong>RM${rental.toLocaleString()}</strong></div>
+ <div class="summary-row"><span>Delivery</span><strong>RM${delivery}</strong></div>
+ <div class="summary-row"><span>Collection</span><strong>RM${collection}</strong></div>
+ <div class="summary-row"><span>Refundable Security Deposit</span><strong>RM${deposit.toLocaleString()}</strong></div>
+ <div class="summary-row summary-total"><span>Estimated Amount to Prepare</span><strong>RM${total.toLocaleString()}</strong></div>
+ <div class="summary-note">Rental rate and deposit are calculated from the KMS pricing baseline effective 10 September 2026. Final price and booking remain subject to KMS confirmation.</div>`;
+ box.classList.remove("hidden");
+}
+function openMaps(id){
+ const v=document.getElementById(id).value.trim();
+ const q=v||"Klang Valley Malaysia";
+ window.open("https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(q),"_blank","noopener");
+}
+function text(){
+ const g=id=>document.getElementById(id).value.trim();
+ const method=g("method");
+ const days=periodDays();
+ let rate=RATES.oneDay;
+ if(days===3) rate=RATES.threeDay;
+ if(days>=4) rate=RATES.fourPlus;
+ const rental=days?rate*days:null;
+ const deposit=days?RATES.depositPerDay*days:null;
+ const delivery=method==="Delivery & Collection"?RATES.delivery:0;
+ const collection=method==="Delivery & Collection"?RATES.collection:0;
+ const estimated=days?rental+delivery+collection+deposit:null;
+ return [
+ "KMS RENTAL — A200 AMG SELF-DRIVE BOOKING",
+ "",
+ "Name: "+g("name"),
+ "WhatsApp / Mobile: "+g("contact"),
+ "Rental Start: "+g("date")+" "+g("time"),
+ "Rental Period: "+g("period"),
+ "Service Method: "+method,
+ ...(method==="Delivery & Collection"?["Delivery Location: "+g("pickup"),"Collection / Return Location: "+g("returnLocation")]:["Collection: Self Pick-Up & Return at KMS designated location"]),
+ ...(days?["","Estimated Rental: RM"+rental.toLocaleString(),"Delivery: RM"+delivery,"Collection: RM"+collection,"Refundable Security Deposit: RM"+deposit.toLocaleString(),"Estimated Amount to Prepare: RM"+estimated.toLocaleString()]:[]),
+ "",
+ "Documents: IC Front + IC Back + Valid Driving Licence + Latest Utility Bill / Current Address",
+ "",
+ "Please verify my Self-Drive booking and confirm availability, final rate and deposit.",
+ "Thank you."
+ ].join("\n");
+}
+async function send(e){
+ e.preventDefault();
+ const form=e.target, status=document.getElementById("status");
+ if(!form.checkValidity()){form.reportValidity();return}
+ const selected=files.map(id=>document.getElementById(id).files[0]);
+ if(selected.some(f=>!f)){form.reportValidity();return}
+ const message=text();
+ const canShare=!!navigator.share && !!navigator.canShare;
+ try{
+   if(canShare && navigator.canShare({files:selected})){
+     await navigator.share({title:"KMS A200 AMG Self-Drive Booking",text:message,files:selected});
+     status.textContent="Booking details and documents are ready in the device share sheet. Select WhatsApp to send to KMS.";
+     status.classList.add("show");
+     return;
+   }
+ }catch(err){
+   if(err && err.name==="AbortError") return;
+ }
+ window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(message),"_blank","noopener");
+ status.innerHTML="WhatsApp has been opened with your booking details. <strong>Please attach the 4 required documents manually</strong> before sending.";
+ status.classList.add("show");
+}
 document.getElementById("form").addEventListener("submit",send);
+document.getElementById("date").min=new Date().toISOString().split("T")[0];
+updateBookingFields();
+updatePrice();
 </script>
 </body>
 </html>
