@@ -9,142 +9,45 @@
 <body style="margin:0;background:#050607;color:#f5f3ed">
 <script>
 (async()=>{
-  try{
-    const stableUrl="https://raw.githubusercontent.com/zacdev69/kmsrental/a3ed490915c1b629b8c0265a6663160aeccd743f/index.html?cb="+Date.now();
-    const sourceUrl="./KMS_A200_AMG_Service_Catalog_EN_V12_1_FINAL_REFINED.html?cb="+Date.now();
-    const r=await fetch(stableUrl,{cache:"no-store"});
-    let h=await r.text();
-    if(!h || h.length<10000) throw new Error("stable build unavailable");
-    h=h.replace(/KMS_A200_AMG_Service_Catalog_EN_V12_1_FINAL_REFINED\.html[^'\"]*/g,"KMS_DISABLED_SOURCE");
-    const css=`
-      .kms-brand-img{display:block;width:142px;height:58px;object-fit:contain;object-position:left center}
-      .kms-hero-carousel{position:relative;width:100%;aspect-ratio:16/10;overflow:hidden;border-radius:16px;background:#0b0e0f;border:1px solid #292d30;isolation:isolate}
-      .kms-hero-slide{position:absolute;inset:0;opacity:0;transition:opacity .65s ease;pointer-events:none}
-      .kms-hero-slide.is-active{opacity:1;pointer-events:auto}
-      .kms-hero-slide img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
-      .kms-hero-dots{position:absolute;left:0;right:0;bottom:12px;display:flex;justify-content:center;gap:6px;z-index:5}
-      .kms-hero-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.42);border:0;padding:0;transition:all .25s ease}
-      .kms-hero-dot.is-active{width:18px;border-radius:6px;background:#f1d48b}
-      .kms-hero-caption{position:absolute;left:12px;bottom:11px;z-index:5;padding:6px 9px;border-radius:7px;background:rgba(5,6,7,.62);backdrop-filter:blur(5px);font-size:7px;font-weight:900;letter-spacing:1.45px;color:#f2eee4}
-      .kms-showcase{margin-top:16px;border:1px solid #292d30;border-radius:18px;overflow:hidden;background:linear-gradient(145deg,#0f1214,#090b0c)}
-      .kms-showcase-head{padding:16px 18px 11px}
-      .kms-showcase-k{color:#efd487;font-size:9px;font-weight:900;letter-spacing:2.1px}
-      .kms-showcase-title{font-size:22px;font-weight:900;margin-top:6px;line-height:1.08}
-      .kms-showcase-sub{color:#92969a;font-size:11px;line-height:1.45;margin-top:6px}
-      .kms-interior-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:0 10px 10px}
-      .kms-experience-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;padding:0 10px 10px}
-      .kms-media-card{margin:0;min-width:0;border:1px solid #292d30;border-radius:14px;overflow:hidden;background:#0b0e0f}
-      .kms-media-card img{display:block;width:100%;aspect-ratio:16/10;height:auto;object-fit:cover;object-position:center}
-      .kms-media-card figcaption{padding:8px 9px 9px;color:#b9bbbd;font-size:7px;font-weight:900;letter-spacing:1.35px;line-height:1.3}
-      .kms-service-note{padding:0 18px 15px;color:#7f8487;font-size:9px;line-height:1.5}
-      @media(max-width:700px){
-        .kms-brand-img{width:125px;height:54px}
-        .kms-hero-carousel{aspect-ratio:16/10;border-radius:15px}
-        .kms-hero-caption{left:9px;bottom:9px;font-size:6.5px;padding:5px 7px}
-        .kms-hero-dots{bottom:9px;gap:5px}
-        .kms-hero-dot{width:4px;height:4px}
-        .kms-hero-dot.is-active{width:15px}
-        .kms-showcase{margin-top:12px;border-radius:15px}
-        .kms-showcase-head{padding:14px 15px 10px}
-        .kms-showcase-title{font-size:19px}
-        .kms-interior-grid{display:flex;overflow-x:auto;gap:8px;padding:0 8px 9px;scroll-snap-type:x mandatory}
-        .kms-interior-grid .kms-media-card{flex:0 0 78%;scroll-snap-align:start}
-        .kms-experience-grid{display:flex;overflow-x:auto;gap:8px;padding:0 8px 9px;scroll-snap-type:x mandatory}
-        .kms-experience-grid .kms-media-card{flex:0 0 72%;scroll-snap-align:start}
-      }
-    `;
-    const sourceScript=`
-      (async()=>{
-        try{
-          const r=await fetch("${sourceUrl}",{cache:"no-store"});
-          const s=await r.text();
-          const d=new DOMParser().parseFromString(s,"text/html");
-          const imgs=[...d.querySelectorAll("img")];
-          const logo=d.querySelector("img.logo");
-          const by=(...words)=>imgs.find(x=>{const a=(x.getAttribute("alt")||"").toLowerCase();return words.some(w=>a.includes(w))});
-          const hero=d.querySelector("img.hero-desktop")||by("luxury hotel","hero");
-          const assets={
-            airport:by("airport","chauffeur"),
-            corporate:by("corporate","business"),
-            wedding:by("wedding"),
-            couple:by("couple","date","night"),
-            shopping:by("shopping","city leisure"),
-            outstation:by("outstation","highway"),
-            cockpit:by("cockpit","steering"),
-            technology:by("infotainment","technology"),
-            seating:by("rear seating","rear seat"),
-            vent:by("rear air vent","air vent"),
-            fullcar:by("full car","a200 amg line"),
-            journey:by("next journey"),
-            service:by("service","hotel arrival")
-          };
-          const brand=document.querySelector(".brand");
-          if(brand&&logo){
-            brand.innerHTML="";
-            const li=document.createElement("img");li.className="kms-brand-img";li.src=logo.getAttribute("src");li.alt="KMS Rental — Drive a Better Tomorrow";brand.appendChild(li);
-          }
-          const oldHero=document.querySelector(".hero-img");
-          if(oldHero&&hero){
-            const slides=[
-              [hero,"KMS RENTAL · A200 AMG LINE"],
-              [assets.airport,"CHAUFFEUR · AIRPORT & HOTEL"],
-              [assets.corporate,"CORPORATE · BUSINESS ARRIVAL"],
-              [assets.wedding,"WEDDING · SPECIAL OCCASION"],
-              [assets.couple,"COUPLES · CITY LEISURE"],
-              [assets.shopping,"SHOPPING · CITY EXPERIENCE"],
-              [assets.outstation,"OUTSTATION · HIGHWAY JOURNEY"]
-            ].filter(x=>x[0]);
-            const carousel=document.createElement("div");carousel.className="kms-hero-carousel";
-            const dots=document.createElement("div");dots.className="kms-hero-dots";
-            const cap=document.createElement("div");cap.className="kms-hero-caption";carousel.appendChild(cap);
-            slides.forEach((v,i)=>{
-              const slide=document.createElement("div");slide.className="kms-hero-slide"+(i===0?" is-active":"");
-              const im=document.createElement("img");im.src=v[0].getAttribute("src");im.alt=v[0].getAttribute("alt")||v[1];slide.appendChild(im);carousel.appendChild(slide);
-              const dot=document.createElement("button");dot.type="button";dot.className="kms-hero-dot"+(i===0?" is-active":"");dot.setAttribute("aria-label","Show slide "+(i+1));dots.appendChild(dot);
-            });
-            carousel.appendChild(dots);oldHero.replaceWith(carousel);
-            const ss=[...carousel.querySelectorAll(".kms-hero-slide")],dd=[...dots.children];let current=0,timer;
-            function show(i){current=(i+ss.length)%ss.length;ss.forEach((x,n)=>x.classList.toggle("is-active",n===current));dd.forEach((x,n)=>x.classList.toggle("is-active",n===current));cap.textContent=slides[current][1];clearInterval(timer);timer=setInterval(()=>show(current+1),4500)}
-            dd.forEach((x,i)=>x.addEventListener("click",()=>show(i)));cap.textContent=slides[0][1];timer=setInterval(()=>show(current+1),4500);
-            let sx=0;carousel.addEventListener("touchstart",e=>sx=e.touches[0].clientX,{passive:true});carousel.addEventListener("touchend",e=>{const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>45)show(current+(dx<0?1:-1))},{passive:true});
-          }
-          document.querySelectorAll(".kms-showcase").forEach(x=>x.remove());
-          const hero=document.querySelector(".kms-hero-carousel");
-          if(hero){
-            const interior=[
-              [assets.cockpit,"AMG COCKPIT · STEERING"],
-              [assets.technology,"DIGITAL · INFOTAINMENT"],
-              [assets.seating,"REAR SEATING · COMFORT"],
-              [assets.vent,"REAR AIR VENTS · PASSENGER COMFORT"]
-            ].filter(x=>x[0]);
-            const exp=[
-              [assets.airport,"AIRPORT · CHAUFFEUR"],
-              [assets.corporate,"BUSINESS · HOTEL ARRIVAL"],
-              [assets.wedding,"WEDDING · SPECIAL OCCASION"],
-              [assets.shopping,"SHOPPING · CITY LEISURE"],
-              [assets.couple,"COUPLES · NIGHT / DATE"],
-              [assets.outstation,"OUTSTATION · HIGHWAY"]
-            ].filter(x=>x[0]);
-            const makeShow=(label,title,sub,items,cls)=>{
-              if(!items.length)return null;const box=document.createElement("section");box.className="kms-showcase";
-              const hd=document.createElement("div");hd.className="kms-showcase-head";hd.innerHTML='<div class="kms-showcase-k">'+label+'</div><div class="kms-showcase-title">'+title+'</div><div class="kms-showcase-sub">'+sub+'</div>';box.appendChild(hd);
-              const grid=document.createElement("div");grid.className=cls;items.forEach(v=>{const f=document.createElement("figure");f.className="kms-media-card";const im=document.createElement("img");im.src=v[0].getAttribute("src");im.alt=v[0].getAttribute("alt")||v[1];const fc=document.createElement("figcaption");fc.textContent=v[1];f.append(im,fc);grid.appendChild(f)});box.appendChild(grid);return box;
-            };
-            const a=makeShow("INSIDE THE A200 AMG","Designed Around the Drive","Cockpit, technology and rear-passenger details — shown in one consistent visual system.",interior,"kms-interior-grid");
-            const b=makeShow("SERVICE EXPERIENCES","Choose the Journey","Visual references for airport, business, wedding, lifestyle and outstation use.",exp,"kms-experience-grid");
-            if(a)hero.parentNode.insertBefore(a,hero.nextSibling);if(b){const anchor=a||hero;b= b;anchor.parentNode.insertBefore(b,anchor.nextSibling)}
-          }
-          document.documentElement.dataset.kmsVersion="12.12-visual-system-16x10";
-        }catch(e){}
-      })()
-    `;
-    const LT=String.fromCharCode(60),GT=String.fromCharCode(62);
-    const styleTag=LT+"style"+GT+css+LT+"/style"+GT;
-    const scriptTag=LT+"script"+GT+sourceScript+LT+"/scr"+"ipt"+GT;
-    h=h.replace("</head>",styleTag+"</head>");
-    h=h.replace("</body>",scriptTag+"</body>");
-    document.open();document.write(h);document.close();
-  }catch(e){document.body.innerHTML="<main style='padding:24px;font:16px Arial'>KMS Rental is loading. Please refresh once.</main>"}
+try{
+const stableUrl="https://raw.githubusercontent.com/zacdev69/kmsrental/a3ed490915c1b629b8c0265a6663160aeccd743f/index.html?cb="+Date.now();
+const sourceUrl="./KMS_A200_AMG_Service_Catalog_EN_V12_1_FINAL_REFINED.html?cb="+Date.now();
+const r=await fetch(stableUrl,{cache:"no-store"});let h=await r.text();if(!h||h.length<10000)throw new Error("stable build unavailable");
+h=h.replace(/KMS_A200_AMG_Service_Catalog_EN_V12_1_FINAL_REFINED\.html[^'\"]*/g,"KMS_DISABLED_SOURCE");
+const css=`
+.kms-brand-img{display:block;width:142px;height:58px;object-fit:contain;object-position:left center}
+.kms-hero-carousel{position:relative;width:100%;aspect-ratio:16/10;overflow:hidden;border-radius:16px;background:#0b0e0f;border:1px solid #292d30;isolation:isolate}
+.kms-hero-slide{position:absolute;inset:0;opacity:0;transition:opacity .65s ease;pointer-events:none}.kms-hero-slide.is-active{opacity:1;pointer-events:auto}
+.kms-hero-slide img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+.kms-hero-dots{position:absolute;left:0;right:0;bottom:12px;display:flex;justify-content:center;gap:6px;z-index:5}.kms-hero-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.42);border:0;padding:0;transition:all .25s ease}.kms-hero-dot.is-active{width:18px;border-radius:6px;background:#f1d48b}
+.kms-hero-caption{position:absolute;left:12px;bottom:11px;z-index:5;padding:6px 9px;border-radius:7px;background:rgba(5,6,7,.62);backdrop-filter:blur(5px);font-size:7px;font-weight:900;letter-spacing:1.45px;color:#f2eee4}
+.kms-showcase{margin-top:16px;border:1px solid #292d30;border-radius:18px;overflow:hidden;background:linear-gradient(145deg,#0f1214,#090b0c)}.kms-showcase-head{padding:16px 18px 11px}.kms-showcase-k{color:#efd487;font-size:9px;font-weight:900;letter-spacing:2.1px}.kms-showcase-title{font-size:22px;font-weight:900;margin-top:6px;line-height:1.08}.kms-showcase-sub{color:#92969a;font-size:11px;line-height:1.45;margin-top:6px}
+.kms-interior-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:0 10px 10px}.kms-experience-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;padding:0 10px 10px}.kms-media-card{margin:0;min-width:0;border:1px solid #292d30;border-radius:14px;overflow:hidden;background:#0b0e0f}.kms-media-card img{display:block;width:100%;aspect-ratio:16/10;height:auto;object-fit:cover;object-position:center}.kms-media-card figcaption{padding:8px 9px 9px;color:#b9bbbd;font-size:7px;font-weight:900;letter-spacing:1.35px;line-height:1.3}
+@media(max-width:700px){.kms-brand-img{width:125px;height:54px}.kms-hero-carousel{aspect-ratio:16/10;border-radius:15px}.kms-hero-caption{left:9px;bottom:9px;font-size:6.5px;padding:5px 7px}.kms-hero-dots{bottom:9px;gap:5px}.kms-hero-dot{width:4px;height:4px}.kms-hero-dot.is-active{width:15px}.kms-showcase{margin-top:12px;border-radius:15px}.kms-showcase-head{padding:14px 15px 10px}.kms-showcase-title{font-size:19px}.kms-interior-grid,.kms-experience-grid{display:flex;overflow-x:auto;gap:8px;padding:0 8px 9px;scroll-snap-type:x mandatory}.kms-interior-grid .kms-media-card{flex:0 0 78%;scroll-snap-align:start}.kms-experience-grid .kms-media-card{flex:0 0 72%;scroll-snap-align:start}}
+`;
+const sourceScript=`
+(async()=>{try{
+const r=await fetch("${sourceUrl}",{cache:"no-store"});const s=await r.text();const d=new DOMParser().parseFromString(s,"text/html");const imgs=[...d.querySelectorAll("img")];
+const logo=d.querySelector("img.logo");const by=(...words)=>imgs.find(x=>{const a=(x.getAttribute("alt")||"").toLowerCase();return words.some(w=>a.includes(w))});
+const hero=d.querySelector("img.hero-desktop")||by("luxury hotel","hero");
+const assets={airport:by("airport","chauffeur"),corporate:by("corporate","business"),wedding:by("wedding"),couple:by("couple","date","night"),shopping:by("shopping","city leisure"),outstation:by("outstation","highway"),cockpit:by("cockpit","steering"),technology:by("infotainment","technology"),seating:by("rear seating","rear seat"),vent:by("rear air vent","air vent")};
+const brand=document.querySelector(".brand");if(brand&&logo){brand.innerHTML="";const li=document.createElement("img");li.className="kms-brand-img";li.src=logo.getAttribute("src");li.alt="KMS Rental — Drive a Better Tomorrow";brand.appendChild(li)}
+const oldHero=document.querySelector(".hero-img");
+if(oldHero&&hero){const slides=[[hero,"KMS RENTAL · A200 AMG LINE"],[assets.airport,"CHAUFFEUR · AIRPORT & HOTEL"],[assets.corporate,"CORPORATE · BUSINESS ARRIVAL"],[assets.wedding,"WEDDING · SPECIAL OCCASION"],[assets.couple,"COUPLES · CITY LEISURE"],[assets.shopping,"SHOPPING · CITY EXPERIENCE"],[assets.outstation,"OUTSTATION · HIGHWAY JOURNEY"]].filter(x=>x[0]);const carousel=document.createElement("div");carousel.className="kms-hero-carousel";const dots=document.createElement("div");dots.className="kms-hero-dots";const cap=document.createElement("div");cap.className="kms-hero-caption";carousel.appendChild(cap);
+slides.forEach((v,i)=>{const slide=document.createElement("div");slide.className="kms-hero-slide"+(i===0?" is-active":"");const im=document.createElement("img");im.src=v[0].getAttribute("src");im.alt=v[0].getAttribute("alt")||v[1];slide.appendChild(im);carousel.appendChild(slide);const dot=document.createElement("button");dot.type="button";dot.className="kms-hero-dot"+(i===0?" is-active":"");dot.setAttribute("aria-label","Show slide "+(i+1));dots.appendChild(dot)});carousel.appendChild(dots);oldHero.replaceWith(carousel);
+const ss=[...carousel.querySelectorAll(".kms-hero-slide")],dd=[...dots.children];let current=0,timer;function show(i){current=(i+ss.length)%ss.length;ss.forEach((x,n)=>x.classList.toggle("is-active",n===current));dd.forEach((x,n)=>x.classList.toggle("is-active",n===current));cap.textContent=slides[current][1];clearInterval(timer);timer=setInterval(()=>show(current+1),4500)}dd.forEach((x,i)=>x.addEventListener("click",()=>show(i)));cap.textContent=slides[0][1];timer=setInterval(()=>show(current+1),4500);let sx=0;carousel.addEventListener("touchstart",e=>sx=e.touches[0].clientX,{passive:true});carousel.addEventListener("touchend",e=>{const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>45)show(current+(dx<0?1:-1))},{passive:true})}
+
+document.querySelectorAll(".kms-showcase").forEach(x=>x.remove());const heroEl=document.querySelector(".kms-hero-carousel");if(heroEl){
+const interior=[[assets.cockpit,"AMG COCKPIT · STEERING"],[assets.technology,"DIGITAL · INFOTAINMENT"],[assets.seating,"REAR SEATING · COMFORT"],[assets.vent,"REAR AIR VENTS · PASSENGER COMFORT"]].filter(x=>x[0]);
+const exp=[[assets.airport,"AIRPORT · CHAUFFEUR"],[assets.corporate,"BUSINESS · HOTEL ARRIVAL"],[assets.wedding,"WEDDING · SPECIAL OCCASION"],[assets.shopping,"SHOPPING · CITY LEISURE"],[assets.couple,"COUPLES · NIGHT / DATE"],[assets.outstation,"OUTSTATION · HIGHWAY"]].filter(x=>x[0]);
+const makeShow=(label,title,sub,items,cls)=>{if(!items.length)return null;const box=document.createElement("section");box.className="kms-showcase";const hd=document.createElement("div");hd.className="kms-showcase-head";hd.innerHTML='<div class="kms-showcase-k">'+label+'</div><div class="kms-showcase-title">'+title+'</div><div class="kms-showcase-sub">'+sub+'</div>';box.appendChild(hd);const grid=document.createElement("div");grid.className=cls;items.forEach(v=>{const f=document.createElement("figure");f.className="kms-media-card";const im=document.createElement("img");im.src=v[0].getAttribute("src");im.alt=v[0].getAttribute("alt")||v[1];const fc=document.createElement("figcaption");fc.textContent=v[1];f.append(im,fc);grid.appendChild(f)});box.appendChild(grid);return box};
+const a=makeShow("INSIDE THE A200 AMG","Designed Around the Drive","Cockpit, technology and rear-passenger details — shown in one consistent visual system.",interior,"kms-interior-grid");const b=makeShow("SERVICE EXPERIENCES","Choose the Journey","Visual references for airport, business, wedding, lifestyle and outstation use.",exp,"kms-experience-grid");if(a)heroEl.parentNode.insertBefore(a,heroEl.nextSibling);if(b){const anchor=a||heroEl;anchor.parentNode.insertBefore(b,anchor.nextSibling)}
+}
+document.documentElement.dataset.kmsVersion="12.12.1-visual-system-16x10";
+}catch(e){console.error(e)}})();
+`;
+const LT=String.fromCharCode(60),GT=String.fromCharCode(62);const styleTag=LT+"style"+GT+css+LT+"/style"+GT;const scriptTag=LT+"script"+GT+sourceScript+LT+"/scr"+"ipt"+GT;h=h.replace("</head>",styleTag+"</head>");h=h.replace("</body>",scriptTag+"</body>");document.open();document.write(h);document.close();
+}catch(e){document.body.innerHTML="<main style='padding:24px;font:16px Arial'>KMS Rental is loading. Please refresh once.</main>"}
 })();
 </script>
 </body>
